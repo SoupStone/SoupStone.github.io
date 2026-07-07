@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Franko-Grace Contractor Acquisition System</title>
+<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -12,18 +13,23 @@
 
     <div class="header">
 
-        <div>FRANKO-GRACE CONTRACTOR ACQUISITION SYSTEM v4.9.7</div>
-        <div>NODE: AU-PAC-03</div>
+        <div>FRANKO-GRACE CONTRACTOR ACQUISITION SYSTEM v1.0 Alpha</div>
+        <div>NODE: EM-MAR-045</div>
 
         <div>
             DATABASE STATUS: ONLINE
             <span id="spinner" class="spinner">|</span>
         </div>
 
-        <div>CORPORATE LINK: STABLE</div>
+        <div>
+            CORPORATE LINK: STABLE
+            <span id="spinner" class="spinner">|</span>
+        </div>
 
     </div>
 
+    <div class="divider"></div>
+    <div> Welcome to the Franco-Grave corporate networ
     <div class="divider"></div>
 
     <div id="output"></div>
@@ -195,40 +201,41 @@ function wait(ms){
 
 async function boot(){
 
-    await typeLine("[SYS] Corporate link established.","system");
+    await typeLine("[SYS] Secure link established.","system");
     await typeLine("[SYS] Contractor registry available.","system");
     await typeLine("[SYS] Type HELP for command list.","system");
-    addLine("");
+    await typeLine("");
 }
 
 async function help(){
 
-    addLine("");
+    await typeLine("");
 
     await typeLine("AVAILABLE COMMANDS","system");
-    addLine("");
-    addLine("HELP");
-    addLine("LIST");
-    addLine("VIEW <ID>");
-    addLine("ABOUT");
-    addLine("CLEAR");
-    addLine("");
+    await typeLine("");
+    await typeLine("HELP");
+    await typeLine("LIST");
+    await typeLine("VIEW <ID>");
+    await typeLine("ABOUT");
+    await typeLine("CLEAR");
+    await typeLine("");
 }
 
 async function about(){
 
-    addLine("");
+    await typeLine("");
 
     await typeLine("FRANKO-GRACE SECURITY SOLUTIONS","system");
 
-    addLine("Flexible contractor acquisition");
-    addLine("for hostile environments.");
-    addLine("");
+    await typeLine("Flexible contractor acquisition");
+    await typeLine("for hostile environments.");
+    await typeLine("Franco-Grace has been supplying expert personel to the front line of the STROM gate since XXXX ");
+    await typeLine("");
 }
 
 async function listContractors(){
 
-    addLine("");
+    await typeLine("");
 
     await typeLine("[SYS] Accessing contractor registry...","system");
     await wait(300);
@@ -239,21 +246,23 @@ async function listContractors(){
     await typeLine("[SYS] Cross-checking disciplinary records...","system");
     await wait(300);
 
-    await typeLine("[SYS] Evaluating contract compatibility...","system");
-    await wait(300);
-
     await typeLine("[SYS] 12 records returned.","system");
 
-    addLine("");
+    await typeLine("");
+    await typeLine("");
+    await typeLine("ID  CALLSIGN               PROFESSION      WARNING");
+    await typeLine("--  ---------------------  --------------  ----------------");
+ for(const c of contractors){
 
-    contractors.forEach(c=>{
+    const id         = String(c.id).padStart(2,"0");
+    const callsign   = c.callsign.padEnd(21);
+    const profession = c.profession.padEnd(14);
 
-        addLine(
-`[${String(c.id).padStart(2,"0")}] CALLSIGN>${c.callsign} | PROFESSION>${c.profession} | WARNING>${c.warning}`
-        );
-    });
-
-    addLine("");
+    await typeLine(
+        `${id}  ${callsign}  ${profession}  ${c.warning}`
+    );
+}
+}
 }
 
 function viewContractor(id){
@@ -262,7 +271,7 @@ function viewContractor(id){
 
     if(!c){
 
-        addLine("Contractor not found.","error");
+        await typeLine("Contractor not found.","error");
         return;
     }
 
@@ -320,12 +329,12 @@ function viewContractor(id){
 
     output.appendChild(wrapper);
 
-    addLine("");
+    await typeLine("");
 }
 
 async function execute(command){
 
-    addLine(`FG:// ${command}`,"user");
+    await typeLine(`FG:// ${command}`,"user");
 
     const parts = command.trim().split(" ");
 
@@ -354,8 +363,8 @@ async function execute(command){
             break;
 
         default:
-            addLine("Unknown command.","error");
-            addLine("Type HELP for command list.","warning");
+            await typeLine("Unknown command.","error");
+            await typeLine("Type HELP for command list.","warning");
     }
 
     scrollBottom();
