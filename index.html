@@ -18,18 +18,18 @@
 
         <div>
             DATABASE STATUS: ONLINE
-            <span id="spinner" class="spinner">|</span>
+            <span id="spinner1" class="spinner">|</span>
         </div>
 
         <div>
             CORPORATE LINK: STABLE
-            <span id="spinner" class="spinner">|</span>
+            <span id="spinner2" class="spinner">|</span>
         </div>
 
     </div>
 
     <div class="divider"></div>
-    <div> Welcome to the Franco-Grave corporate network </div>
+    <div> Welcome to the Franco-Grace corporate network </div>
     <div class="divider"></div>
 
     <div id="output"></div>
@@ -166,17 +166,24 @@ function addLine(text="", cls=""){
     const div = document.createElement("div");
 
     div.className = `line ${cls}`;
-
+    div.textContent = text;
+    
     output.appendChild(div);
 
+    scrollBottom();
+    
     return div;
 }
 
-async function typeLine(text="", cls=""){
+async function typeLine(text = "", cls = "") {
 
-    const div = addLine("", cls);
+    const div = document.createElement("div");
 
-    for(let i=0;i<text.length;i++){
+    div.className = `line ${cls}`;
+
+    output.appendChild(div);
+
+    for (let i = 0; i < text.length; i++) {
 
         div.textContent += text[i];
 
@@ -184,6 +191,8 @@ async function typeLine(text="", cls=""){
     }
 
     scrollBottom();
+
+    return div;
 }
 
 function scrollBottom(){
@@ -262,6 +271,7 @@ async function listContractors(){
         `${id}  ${callsign}  ${profession}  ${c.warning}`
     );
 }
+    
 }
 
 function viewContractor(id){
@@ -327,8 +337,7 @@ function viewContractor(id){
     `;
 
     output.appendChild(wrapper);
-
-    await typeLine("");
+    addLine("");
 }
 
 async function execute(command){
