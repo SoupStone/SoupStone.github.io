@@ -3,156 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Franko-Grace Mercenary Acquisition Terminal</title>
-  
-<link rel="stylesheet" href="style.css">
-  
-</head>
+<title>Franko-Grace Contractor Acquisition System</title>
 
+</head>
 <body>
 
 <div class="terminal">
 
-  <main class="screen">
+    <div class="header">
 
-    <div class="header-line">
-══════════════════════════════════════════════════════════════════════════════
+        <div>FRANKO-GRACE CONTRACTOR ACQUISITION SYSTEM v4.9.7</div>
+        <div>NODE: AU-PAC-03</div>
+
+        <div>
+            DATABASE STATUS: ONLINE
+            <span id="spinner" class="spinner">|</span>
+        </div>
+
+        <div>CORPORATE LINK: STABLE</div>
+
     </div>
 
-    <div class="company-banner">
-      <h1>FRANKO-GRACE SECURITY SOLUTIONS // CONTRACTOR ACQUISITION SYSTEM</h1>
+    <div class="divider"></div>
+
+    <div id="output"></div>
+
+    <div class="input-line">
+
+        <span class="prompt">FG://</span>
+
+        <div class="input-wrapper">
+
+            <input
+                id="command"
+                autocomplete="off"
+                spellcheck="false"
+                autofocus
+            >
+
+            <span class="block-cursor"></span>
+
+        </div>
+
     </div>
-
-    <div class="header-line">
-══════════════════════════════════════════════════════════════════════════════
-    </div>
-
-    <p class="status">
-      <span class="status-code">FG-1128</span>
-      Contractor procurement channel established.
-    </p>
-
-    <form>
-
-      <div class="grid">
-
-        <label for="contract">Contract ID</label>
-        <input
-          id="contract"
-          name="contract"
-          value="OP-CINDER-441"
-        >
-
-        <label for="theater">Operational Theater</label>
-        <select id="theater" name="theater">
-          <option>Frontier Zone</option>
-          <option>Urban Pacification</option>
-          <option>Corporate Security</option>
-          <option>Asset Recovery</option>
-        </select>
-
-        <label for="strength">Personnel Required</label>
-        <input
-          id="strength"
-          name="strength"
-          type="number"
-          value="12"
-        >
-
-        <label for="budget">Budget Allocation</label>
-        <input
-          id="budget"
-          name="budget"
-          value="450,000 CR"
-        >
-
-      </div>
-
-      <div class="section-title">
-─── AVAILABLE CONTRACTORS ───────────────────────────────────────────────────
-      </div>
-
-      <section class="roster" aria-label="Available contractors">
-
-        <div class="roster-header">
-          <div>CALLSIGN</div>
-          <div>SPECIALTY</div>
-          <div>RATING</div>
-          <div>AVAILABILITY</div>
-        </div>
-
-        <div class="roster-row">
-          <div>IRON JACKAL</div>
-          <div>ASSAULT</div>
-          <div class="rating-a">A+</div>
-          <div>READY</div>
-        </div>
-
-        <div class="roster-row">
-          <div>GREYWIRE</div>
-          <div>RECON</div>
-          <div class="rating-a">A</div>
-          <div>READY</div>
-        </div>
-
-        <div class="roster-row">
-          <div>BLACK HOUND</div>
-          <div>BREACH</div>
-          <div class="rating-b">B+</div>
-          <div>48 HRS</div>
-        </div>
-
-        <div class="roster-row">
-          <div>WIDOWMAKER</div>
-          <div>MARKSMAN</div>
-          <div class="rating-a">A+</div>
-          <div>READY</div>
-        </div>
-
-        <div class="roster-row">
-          <div>STATIC-9</div>
-          <div>TECH OPS</div>
-          <div class="rating-c">C</div>
-          <div>READY</div>
-        </div>
-
-      </section>
-
-      <div class="section-title">
-─── COMMAND OPTIONS ─────────────────────────────────────────────────────────
-      </div>
-
-      <div class="actions">
-        <button type="button">PF5 HIRE TEAM</button>
-        <button type="button">PF7 PREVIOUS</button>
-        <button type="button">PF8 NEXT PAGE</button>
-        <button type="button">PF12 LOG OUT</button>
-      </div>
-
-      <p class="notice">
-        Transaction =&gt; EXECUTE CONTRACT<span class="cursor"></span>
-      </p>
-
-      <p class="notice">
-        <span class="highlight">NOTICE:</span>
-        Franko-Grace assumes no liability for collateral losses,
-        regime destabilization, or contractor mortality.
-      </p>
-
-    </form>
-
-  </main>
-
-  <div class="oia">
-    <span><span class="sys">FG</span> CONTRACT SYSTEM</span>
-    <span class="sys">FG-TERM/3279</span>
-    <span>ROW 021 COL 017</span>
-    <span class="insert">INSERT</span>
-    <span>NUM</span>
-    <span class="sys">14:23:07</span>
-  </div>
 
 </div>
+
+<script>
+
+const contractors = [
+
+{
+id:1,
+callsign:"IRON JACKAL",
+profession:"ASSAULT",
+warning:"PSYCHOTIC",
+bio:"Former shock trooper specialising in direct assault operations."
+},
+{
+id:2,
+callsign:"GREYWIRE",
+profession:"RECON",
+warning:"MISSING EYE",
+bio:"Long-range reconnaissance specialist."
+},
+{
+id:3,
+callsign:"BLACK HOUND",
+profession:"BREACHER",
+warning:"ARSONIST",
+bio:"Explosives and forced-entry expert."
+},
+{
+id:4,
+callsign:"WIDOWMAKER",
+profession:"MARKSMAN",
+warning:"NARCISSIST",
+bio:"Elite long-range precision shooter."
+},
+{
+id:5,
+callsign:"STATIC-9",
+profession:"TECH OPS",
+warning:"PARANOID",
+bio:"Electronic warfare and network intrusion specialist."
+},
+{
+id:6,
+callsign:"BONE SAINT",
+profession:"MEDIC",
+warning:"CULTIST",
+bio:"Combat surgeon with unconventional beliefs."
+},
+{
+id:7,
+callsign:"TITAN",
+profession:"HEAVY WEAPONS",
+warning:"VIOLENT",
+bio:"Crew-served weapons specialist."
+},
+{
+id:8,
+callsign:"ASH VIPER",
+profession:"INFILTRATION",
+warning:"LIAR",
+bio:"Deep-cover intelligence operative."
+},
+{
+id:9,
+callsign:"CROWFATHER",
+profession:"TRACKER",
+warning:"CANNIBAL RUMOURS",
+bio:"Frontier pursuit specialist."
+},
+{
+id:10,
+callsign:"RED MERCURY",
+profession:"DRIVER",
+warning:"GAMBLER",
+bio:"Vehicle and convoy operator."
+},
+{
+id:11,
+callsign:"PALE KING",
+profession:"NEGOTIATOR",
+warning:"MANIPULATIVE",
+bio:"Corporate dispute specialist."
+},
+{
+id:12,
+callsign:"HEX",
+profession:"DEMOLITIONS",
+warning:"OBSESSIVE",
+bio:"Explosive ordnance expert."
+}
+
+];
+
+const output = document.getElementById("output");
+const input = document.getElementById("command");
+const cursor = document.querySelector(".block-cursor");
+
+const history = [];
+let historyIndex = -1;
+
+function moveCursor(){
+
+    cursor.style.left =
+        Math.max(4, input.value.length * 13) + "px";
+}
+
+input.addEventListener("input", moveCursor);
+
+function addLine(text="", cls=""){
+
+    const div = document.createElement("div");
+
+    div.className = `line ${cls}`;
+
+    output.appendChild(div);
+
+    return div;
+}
+
+async function typeLine(text="", cls=""){
+
+    const div = addLine("", cls);
+
+    for(let i=0;i<text.length;i++){
+
+        div.textContent += text[i];
+
+        await wait(8);
+    }
+
+    scrollBottom();
+}
+
+function scrollBottom(){
+
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:"smooth"
+    });
+}
+
+function wait(ms){
+
+    return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+async function boot(){
+
+    await typeLine("[SYS] Corporate link established.","system");
+    await typeLine("[SYS] Contractor registry available.","system");
+    await typeLine("[SYS] Type HELP for command list.","system");
+    addLine("");
+}
+
+async function help(){
+
+    addLine("");
+
+    await typeLine("AVAILABLE COMMANDS","system");
+    addLine("");
+    addLine("HELP");
+    addLine("LIST");
+    addLine("VIEW <ID>");
+    addLine("ABOUT");
+    addLine("CLEAR");
+    addLine("");
+}
+
+async function about(){
+
+    addLine("");
+
+    await typeLine("FRANKO-GRACE SECURITY SOLUTIONS","system");
+
+    addLine("Flexible contractor acquisition");
+    addLine("for hostile environments.");
+    addLine("");
+}
+
+async function listContractors(){
+
+    addLine("");
+
+    await typeLine("[SYS] Accessing contractor registry...","system");
+    await wait(300);
+
+    await typeLine("[SYS] Verifying personnel status...","system");
+    await wait(300);
+
+    await typeLine("[SYS] Cross-checking disciplinary records...","system");
+    await wait(300);
+
+    await typeLine("[SYS] Evaluating contract compatibility...","system");
+    await wait(300);
+
+    await typeLine("[SYS] 12 records returned.","system");
+
+    addLine("");
+
+    contractors.forEach(c=>{
+
+        addLine(
+`[${String(c.id).padStart(2,"0")}] CALLSIGN>${c.callsign} | PROFESSION>${c.profession} | WARNING>${c.warning}`
+        );
+    });
+
+    addLine("");
+}
+
+function viewContractor(id){
+
+    const c = contractors.find(x=>x.id===id);
+
+    if(!c){
+
+        addLine("Contractor not found.","error");
+        return;
+    }
+
+    const wrapper = document.createElement("div");
+
+    wrapper.className = "dossier";
+
+    wrapper.innerHTML = `
+        <div class="dossier-header">
+            CONTRACTOR DOSSIER
+        </div>
+
+        <div>
+            CALL SIGN  > ${c.callsign}<br>
+            PROFESSION > ${c.profession}<br>
+            WARNING    > ${c.warning}
+        </div>
+
+        <br>
+
+        <div class="dossier-layout">
+
+            <div class="portrait">
+                ██████████████<br>
+                █ PORTRAIT █<br>
+                ██████████████<br><br>
+                ${c.callsign}
+            </div>
+
+            <div>
+
+                <div class="section-title">
+                    BACKGROUND
+                </div>
+
+                <div>
+                    ${c.bio}
+                </div>
+
+                <br>
+
+                <div class="section-title">
+                    DISCIPLINARY NOTES
+                </div>
+
+                <div>
+                    Subject warning flag:
+                    ${c.warning}
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    output.appendChild(wrapper);
+
+    addLine("");
+}
+
+async function execute(command){
+
+    addLine(`FG:// ${command}`,"user");
+
+    const parts = command.trim().split(" ");
+
+    const cmd = parts[0].toUpperCase();
+
+    switch(cmd){
+
+        case "HELP":
+            await help();
+            break;
+
+        case "LIST":
+            await listContractors();
+            break;
+
+        case "VIEW":
+            viewContractor(parseInt(parts[1]));
+            break;
+
+        case "ABOUT":
+            await about();
+            break;
+
+        case "CLEAR":
+            output.innerHTML="";
+            break;
+
+        default:
+            addLine("Unknown command.","error");
+            addLine("Type HELP for command list.","warning");
+    }
+
+    scrollBottom();
+}
+
+input.addEventListener("keydown", async e=>{
+
+    if(e.key==="Enter"){
+
+        const cmd = input.value.trim();
+
+        if(!cmd) return;
+
+        history.push(cmd);
+        historyIndex = history.length;
+
+        input.value="";
+        moveCursor();
+
+        await execute(cmd);
+    }
+
+    if(e.key==="ArrowUp"){
+
+        e.preventDefault();
+
+        if(historyIndex>0){
+
+            historyIndex--;
+
+            input.value = history[historyIndex];
+            moveCursor();
+        }
+    }
+
+    if(e.key==="ArrowDown"){
+
+        e.preventDefault();
+
+        if(historyIndex < history.length-1){
+
+            historyIndex++;
+
+            input.value = history[historyIndex];
+        }
+        else{
+
+            historyIndex = history.length;
+            input.value = "";
+        }
+
+        moveCursor();
+    }
+});
+
+const spinnerFrames = ["|","/","-","\\"];
+let frame = 0;
+
+setInterval(()=>{
+
+    frame++;
+
+    document.getElementById("spinner").textContent =
+        spinnerFrames[frame % spinnerFrames.length];
+
+},150);
+
+boot();
+
+</script>
 
 </body>
 </html>
