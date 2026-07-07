@@ -29,7 +29,7 @@
     </div>
 
     <div class="divider"></div>
-    <div> Welcome to the Franco-Grave corporate networ
+    <div> Welcome to the Franco-Grave corporate network </div>
     <div class="divider"></div>
 
     <div id="output"></div>
@@ -263,7 +263,6 @@ async function listContractors(){
     );
 }
 }
-}
 
 function viewContractor(id){
 
@@ -271,7 +270,7 @@ function viewContractor(id){
 
     if(!c){
 
-        await typeLine("Contractor not found.","error");
+        addLine("Contractor not found.","error");
         return;
     }
 
