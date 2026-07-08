@@ -54,10 +54,13 @@ export const PROFESSIONS = [
 
 ];
 
-function random(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
+export function generateProfessions(count) {
 
-export function generateProfession() {
-    return random(PROFESSIONS);
+    const professions = [];
+
+    for(let i = 0; i < count; i++) {
+        professions.push(random(PROFESSIONS));
+    }
+
+    return professions;
 }
