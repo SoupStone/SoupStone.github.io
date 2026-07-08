@@ -188,10 +188,11 @@ body::before{
     }
 }
 
-
 .dossier{
-
-    margin:12px 0;
+    
+    white-space:normal;
+    
+    margin:2px 0;
 
     border:1px solid rgba(0,212,212,.25);
 
@@ -231,18 +232,13 @@ body::before{
 }
 
 .dossier-body{
-
-    display:grid;
-
-    grid-template-columns:1fr 220px;
-
+    display:flex;
     gap:20px;
-
-    align-items:start;
+    align-items:flex-start;
 }
 
 .dossier-text{
-    min-width:0;
+    flex:1;
 }
 
 .section-title{
