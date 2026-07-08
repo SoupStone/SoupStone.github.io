@@ -54,10 +54,7 @@ export const WARNINGS = [
 
 ];
 
-function random(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
+import { random } from "../utils.js";
 export function generateWarnings(count) {
 
     const warnings = [];
