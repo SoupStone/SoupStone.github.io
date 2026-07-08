@@ -1,4 +1,5 @@
-const PORTRAIT_COUNT = 20;
+import { PORTRAIT_COUNT }
+from "../config.js";
 
 export function generatePortraits() {
 
