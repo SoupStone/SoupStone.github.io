@@ -1,6 +1,6 @@
 import { PORTRAIT_COUNT }
 from "../config.js";
-
+import { random } from "../utils.js";
 export function generatePortraits() {
 
     const portraits = [];
