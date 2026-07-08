@@ -1,10 +1,13 @@
+import { CONTRACTOR_COUNT }
+from "./config.js";
+
 import { generateCallSigns }
 from "./ContractorData/ContractorCallSigns.js";
 
-import { generateProfession }
+import { generateProfessions }
 from "./ContractorData/ContractorProfessions.js";
 
-import { generateWarning }
+import { generateWarnings }
 from "./ContractorData/ContractorWarnings.js";
 
 import { generatePortraits }
@@ -15,30 +18,28 @@ let contractors = [];
 function generateContractors() {
 
     contractors = [];
+const callsigns = generateCallSigns(CONTRACTOR_COUNT);
+const portraits = generatePortraits(CONTRACTOR_COUNT);
+const professions = generateProfessions(CONTRACTOR_COUNT);
+const warnings = generateWarnings(CONTRACTOR_COUNT);
 
-    const callsigns = generateCallSigns(12);
+for(let i = 0; i < CONTRACTOR_COUNT; i++) {
 
-    for(let i = 0; i < 12; i++) {
+    contractors.push({
 
-        const profession = generateProfession();
-        const warning = generateWarning();
-        const portraits = generatePortraits();
+        id: i + 1,
 
-        contractors.push({
+        callsign: callsigns[i],
 
-            id: i + 1,
+        profession: professions[i].name,
 
-            callsign: callsigns[i],
+        bio: professions[i].description,
 
-            profession: profession.name,
+        warning: warnings[i].name,
 
-            bio: profession.description,
+        warningDescription: warnings[i].description,
 
-            warning: warning.name,
-
-            warningDescription: warning.description
-
-            portrait: portraits[i]
+        portrait: portraits[i]
 
         });
     }
@@ -154,9 +155,8 @@ async function listContractors(){
 
     await typeLine("[SYS] Cross-checking disciplinary records...","system");
     await wait(300);
-
-    await typeLine("[SYS] 12 records returned.","system");
-
+    
+    await typeLine(`[SYS] ${CONTRACTOR_COUNT} records returned.`,"system");
     await typeLine("");
     await typeLine("");
     await typeLine("ID  CALLSIGN               PROFESSION      WARNING");
