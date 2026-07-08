@@ -11,7 +11,7 @@ import { generateWarnings }
 from "./ContractorData/ContractorWarnings.js";
 
 import { generatePortraits }
-from "./ContractorData/CallsignImages.js";
+from "./ContractorData/ContractorImages.js";
 
 let contractors = [];
 
