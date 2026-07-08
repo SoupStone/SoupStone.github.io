@@ -53,7 +53,7 @@ export const PROFESSIONS = [
 }
 
 ];
-
+import { random } from "../Utils.js";
 export function generateProfessions(count) {
 
     const professions = [];
