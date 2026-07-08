@@ -7,6 +7,9 @@ from "./ContractorData/ContractorProfessions.js";
 import { generateWarning }
 from "./ContractorData/ContractorWarnings.js";
 
+import { generatePortraits }
+from "./ContractorData/CallsignImages.js";
+
 let contractors = [];
 
 function generateContractors() {
@@ -19,6 +22,7 @@ function generateContractors() {
 
         const profession = generateProfession();
         const warning = generateWarning();
+        const portraits = generatePortraits();
 
         contractors.push({
 
@@ -33,6 +37,8 @@ function generateContractors() {
             warning: warning.name,
 
             warningDescription: warning.description
+
+            portrait: portraits[i]
 
         });
     }
