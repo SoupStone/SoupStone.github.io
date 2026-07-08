@@ -229,11 +229,10 @@ wrapper.innerHTML = `
 
     <div class="portrait">
 
-        <div class="portrait-placeholder">
-            IMAGE<br>
-            PENDING
-        </div>
-
+    <img
+        src="${c.portrait}"
+        alt="${c.callsign}"
+    >
     </div>
 
 </div>
