@@ -1,91 +1,42 @@
-const contractors = [
+import { generateCallSigns }
+from "./ContractorData/ContractorCallSigns.js";
 
-{
-id:1,
-callsign:"IRON JACKAL",
-profession:"ASSAULT",
-warning:"PSYCHOTIC",
-bio:"Former shock trooper specialising in direct assault operations."
-},
-{
-id:2,
-callsign:"GREYWIRE",
-profession:"RECON",
-warning:"MISSING EYE",
-bio:"Long-range reconnaissance specialist."
-},
-{
-id:3,
-callsign:"BLACK HOUND",
-profession:"BREACHER",
-warning:"ARSONIST",
-bio:"Explosives and forced-entry expert."
-},
-{
-id:4,
-callsign:"WIDOWMAKER",
-profession:"MARKSMAN",
-warning:"NARCISSIST",
-bio:"Elite long-range precision shooter."
-},
-{
-id:5,
-callsign:"STATIC-9",
-profession:"TECH OPS",
-warning:"PARANOID",
-bio:"Electronic warfare and network intrusion specialist."
-},
-{
-id:6,
-callsign:"BONE SAINT",
-profession:"MEDIC",
-warning:"CULTIST",
-bio:"Combat surgeon with unconventional beliefs."
-},
-{
-id:7,
-callsign:"TITAN",
-profession:"HEAVY WEAPONS",
-warning:"VIOLENT",
-bio:"Crew-served weapons specialist."
-},
-{
-id:8,
-callsign:"ASH VIPER",
-profession:"INFILTRATION",
-warning:"LIAR",
-bio:"Deep-cover intelligence operative."
-},
-{
-id:9,
-callsign:"CROWFATHER",
-profession:"TRACKER",
-warning:"CANNIBAL RUMOURS",
-bio:"Frontier pursuit specialist."
-},
-{
-id:10,
-callsign:"RED MERCURY",
-profession:"DRIVER",
-warning:"GAMBLER",
-bio:"Vehicle and convoy operator."
-},
-{
-id:11,
-callsign:"PALE KING",
-profession:"NEGOTIATOR",
-warning:"MANIPULATIVE",
-bio:"Corporate dispute specialist."
-},
-{
-id:12,
-callsign:"HEX",
-profession:"DEMOLITIONS",
-warning:"OBSESSIVE",
-bio:"Explosive ordnance expert."
+import { generateProfession }
+from "./ContractorData/ContractorProfessions.js";
+
+import { generateWarning }
+from "./ContractorData/ContractorWarnings.js";
+
+let contractors = [];
+
+function generateContractors() {
+
+    contractors = [];
+
+    const callsigns = generateCallSigns(12);
+
+    for(let i = 0; i < 12; i++) {
+
+        const profession = generateProfession();
+        const warning = generateWarning();
+
+        contractors.push({
+
+            id: i + 1,
+
+            callsign: callsigns[i],
+
+            profession: profession.name,
+
+            bio: profession.description,
+
+            warning: warning.name,
+
+            warningDescription: warning.description
+
+        });
+    }
 }
-
-];
 
 const output = document.getElementById("output");
 const input = document.getElementById("command");
@@ -189,7 +140,9 @@ async function listContractors(){
 
     await typeLine("[SYS] Accessing contractor registry...","system");
     await wait(300);
-
+    
+    generateContractors();
+    
     await typeLine("[SYS] Verifying personnel status...","system");
     await wait(300);
 
@@ -262,6 +215,8 @@ wrapper.innerHTML = `
 
         <div class="section-content">
             Subject warning flag: ${c.warning}
+            <br><br>
+            ${c.warningDescription}
         </div>
 
     </div>
