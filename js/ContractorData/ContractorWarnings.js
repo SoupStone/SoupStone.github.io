@@ -58,6 +58,13 @@ function random(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-export function generateWarning() {
-    return random(WARNINGS);
+export function generateWarnings(count) {
+
+    const warnings = [];
+
+    for(let i = 0; i < count; i++) {
+        warnings.push(random(WARNINGS));
+    }
+
+    return warnings;
 }
