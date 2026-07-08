@@ -1,8 +1,10 @@
-function generatePortraits(count = 12) {
+const PORTRAIT_COUNT = 20;
+
+export function generatePortraits() {
 
     const portraits = [];
 
-    for(let i = 1; i <= count; i++) {
+    for(let i = 1; i <= PORTRAIT_COUNT; i++) {
         portraits.push(`./assets/${i}.png`);
     }
 
