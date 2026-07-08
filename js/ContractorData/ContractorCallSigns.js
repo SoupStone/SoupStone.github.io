@@ -104,9 +104,7 @@ const Suffix = [
     "SOLDIER"
 ];
 
-function random(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
+import { random } from "../utils.js";
 
 export function generateCallSigns(count = 12) {
 
