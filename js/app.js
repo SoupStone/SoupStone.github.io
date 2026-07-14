@@ -109,7 +109,7 @@ async function listContractors(){
     
     contractors = generateContractors();
     
-    await typeLine("[SYS] Verifying personnel status...","system");
+    await typeLine("[SYS] Verifying personel status...","system");
     await wait(300);
 
     await typeLine("[SYS] Cross-checking disciplinary records...","system");
@@ -131,6 +131,62 @@ async function listContractors(){
     );
 }
     
+}
+function buildStatsTable(stats, skills) {
+    const grades = {
+    "-1": " ",
+    "0": " ",
+    "1": "D",
+    "2": "C",
+    "3": "B",
+    "4": "A"
+};
+
+const skillValue = value =>
+    value === -1 ? " " : String(value);
+    const row = (a, b, c, d) =>
+        `${a.padEnd(18)}| ${b.padEnd(18)}| ${c.padEnd(18)}| ${d.padEnd(18)}`;
+
+    return `
+<pre class="stat-block">
+${row(
+    `FORCE ${grades[stats.force]}`,
+    `OPERATIONS ${grades[stats.operations]}`,
+    `ADAPTATION ${grades[stats.adaptation]}`,
+    `EXPERTISE ${grades[stats.expertise]}`
+)}
+${"-".repeat(78)}
+${row(
+    `ENDURANCE ${skillValue(skills.endurance)}`,
+    `VOIDCRAFT ${skillValue(skills.voidcraft)}`,
+    `WILLPOWER ${skillValue(skills.willpower)}`,
+    `SCIENCE ${skillValue(skills.science)}`
+)}
+${row(
+    `PHYSIQUE ${skillValue(skills.physique)}`,
+    `DRIVE ${skillValue(skills.drive)}`,
+    `XENOTECH ${skillValue(skills.xenotech)}`,
+    `ELECTRONICS ${skillValue(skills.electronics)}`
+)}
+${row(
+    `ENGINEERING ${skillValue(skills.engineering)}`,
+    `INSTINCT ${skillValue(skills.instinct)}`,
+    `SHADOW ${skillValue(skills.shadow)}`,
+    `BUREAUCRACY ${skillValue(skills.bureaucracy)}`
+)}
+${row(
+    `EXPLOSIVES ${skillValue(skills.explosives)}`,
+    `CQC ${skillValue(skills.cqc)}`,
+    `SURVIVAL ${skillValue(skills.survival)}`,
+    `ENCYCLOPEDIA ${skillValue(skills.encyclopedia)}`
+)}
+${row(
+    `BIG GUNS ${skillValue(skills.bigguns)}`,
+    `GUNS ${skillValue(skills.guns)}`,
+    `STROM ${skillValue(skills.strom)}`,
+    `MEDICARE ${skillValue(skills.medicare)}`
+)}
+</pre>`;
 }
 
 function viewContractor(id){
@@ -183,7 +239,7 @@ wrapper.innerHTML = `
             <br><br>
             ${c.warningDescription}
         </div>
-
+    ${buildStatsTable(c.stats, c.skills)}
     </div>
 
     <div class="portrait">
@@ -219,8 +275,13 @@ async function execute(command){
             break;
 
         case "VIEW":
-            viewContractor(parseInt(parts[1]));
-            break;
+            if(!parts[1]){
+                await typeLine("Usage: VIEW <ID>","warning");
+                break;
+            }
+
+    viewContractor(parseInt(parts[1]));
+    break;
 
         case "ABOUT":
             await about();
