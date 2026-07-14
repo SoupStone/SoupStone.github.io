@@ -241,6 +241,14 @@ body::before{
     flex:1;
 }
 
+.stat-block{
+    font-family: inherit;
+    font-size: 1em;
+    line-height: 1.4;
+    margin-top: 1rem;
+    white-space: pre;
+}
+
 .section-title{
 
     color:var(--cyan);
