@@ -81,6 +81,7 @@ async function help(){
     await typeLine("AVAILABLE COMMANDS","system");
     await typeLine("");
     await typeLine("HELP");
+    await typeLine("SEARCH");
     await typeLine("LIST");
     await typeLine("VIEW <ID>");
     await typeLine("ABOUT");
@@ -100,46 +101,60 @@ async function about(){
     await typeLine("");
 }
 
-async function listContractors(){
+async function searchContractors(){
 
     await typeLine("");
 
     await typeLine("[SYS] Accessing contractor registry...","system");
     await wait(300);
-    
+
     contractors = generateContractors();
-    
-    await typeLine("[SYS] Verifying personel status...","system");
+
+    await typeLine("[SYS] Verifying personnel status...","system");
     await wait(300);
 
     await typeLine("[SYS] Cross-checking disciplinary records...","system");
     await wait(300);
-    
+
     await typeLine(`[SYS] ${CONTRACTOR_COUNT} records returned.`,"system");
+
+    await displayContractors();
+}
+
+async function displayContractors(){
+
+    if(contractors.length === 0){
+
+        await typeLine("[SYS] No contractor registry loaded.","warning");
+        await typeLine("[SYS] Run SEARCH first.","warning");
+        return;
+    }
+
     await typeLine("");
     await typeLine("");
+
     await typeLine("ID  CALLSIGN               PROFESSION      WARNING");
     await typeLine("--  ---------------------  --------------  ----------------");
- for(const c of contractors){
 
-    const id         = String(c.id).padStart(2,"0");
-    const callsign   = c.callsign.padEnd(21);
-    const profession = c.profession.padEnd(14);
+    for(const c of contractors){
 
-    await typeLine(
-        `${id}  ${callsign}  ${profession}  ${c.warning}`
-    );
+        const id         = String(c.id).padStart(2,"0");
+        const callsign   = c.callsign.padEnd(21);
+        const profession = c.profession.padEnd(14);
+
+        await typeLine(
+            `${id}  ${callsign}  ${profession}  ${c.warning}`
+        );
+    }
 }
     
-}
 function buildStatsTable(stats, skills) {
     const grades = {
     "-1": " ",
-    "0": " ",
-    "1": "D",
-    "2": "C",
-    "3": "B",
-    "4": "A"
+    "0": "D ",
+    "1": "C",
+    "2": "B",
+    "3": "A"
 };
 
 const skillValue = value =>
@@ -269,9 +284,13 @@ async function execute(command){
         case "HELP":
             await help();
             break;
-
+        
+        case "SEARCH":
+            await searchContractors();
+            break;
+        
         case "LIST":
-            await listContractors();
+            await displayContractors();
             break;
 
         case "VIEW":
