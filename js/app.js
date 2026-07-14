@@ -1,49 +1,8 @@
+import { generateContractors }
+from "./contractor_generator.js";
 import { CONTRACTOR_COUNT }
 from "./config.js";
-
-import { generateCallSigns }
-from "./ContractorData/ContractorCallSigns.js";
-
-import { generateProfessions }
-from "./ContractorData/ContractorProfessions.js";
-
-import { generateWarnings }
-from "./ContractorData/ContractorWarnings.js";
-
-import { generatePortraits }
-from "./ContractorData/ContractorImages.js";
-
 let contractors = [];
-
-function generateContractors() {
-
-    contractors = [];
-const callsigns = generateCallSigns(CONTRACTOR_COUNT);
-const portraits = generatePortraits(CONTRACTOR_COUNT);
-const professions = generateProfessions(CONTRACTOR_COUNT);
-const warnings = generateWarnings(CONTRACTOR_COUNT);
-
-for(let i = 0; i < CONTRACTOR_COUNT; i++) {
-
-    contractors.push({
-
-        id: i + 1,
-
-        callsign: callsigns[i],
-
-        profession: professions[i].name,
-
-        bio: professions[i].description,
-
-        warning: warnings[i].name,
-
-        warningDescription: warnings[i].description,
-
-        portrait: portraits[i]
-
-        });
-    }
-}
 
 const output = document.getElementById("output");
 const input = document.getElementById("command");
@@ -148,7 +107,7 @@ async function listContractors(){
     await typeLine("[SYS] Accessing contractor registry...","system");
     await wait(300);
     
-    generateContractors();
+    contractors = generateContractors();
     
     await typeLine("[SYS] Verifying personnel status...","system");
     await wait(300);
