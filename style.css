@@ -61,7 +61,8 @@ body::before{
 
 .terminal{
 
-    max-width:1000px;
+    max-width:1400px;
+    width:95%;
     margin:auto;
 
     background:#000;
@@ -198,7 +199,9 @@ body::before{
 
     padding:14px;
 
-    max-width:850px;
+    width: 95%;
+    
+    max-width: none;
 
     background:rgba(0,212,212,.015);
 }
@@ -232,13 +235,11 @@ body::before{
 }
 
 .dossier-body{
-    display:flex;
-    gap:20px;
-    align-items:flex-start;
+    position:relative;
 }
 
 .dossier-text{
-    flex:1;
+    padding-right:270px;
 }
 
 .stat-block{
@@ -247,6 +248,8 @@ body::before{
     line-height: 1.4;
     margin-top: 1rem;
     white-space: pre;
+    overflow-x:auto;
+    color: var(--cyan);
 }
 
 .section-title{
@@ -254,7 +257,7 @@ body::before{
     color:var(--cyan);
 
     margin-bottom:6px;
-    margin-top:14px;
+    margin-top:10px;
 }
 
 .section-content{
@@ -266,7 +269,13 @@ body::before{
 
 .portrait{
 
-    width:220px;
+
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:240px;
     height:260px;
 
     border:1px solid var(--cyan);
@@ -303,13 +312,6 @@ body::before{
     text-align:center;
 
     color:var(--cyan);
-}
-
-.section-title{
-
-    color:var(--cyan);
-
-    margin-top:10px;
 }
 
 .spinner{
