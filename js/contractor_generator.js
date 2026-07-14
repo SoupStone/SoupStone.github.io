@@ -68,6 +68,20 @@ export function generateContractors() {
 
     warning.skills.forEach(skill => {skills[skill] += 1;});
     stats[warning.stat] += 1;
+
+    const statNames = Object.keys(stats);
+    let randomIndex = Math.floor(
+        Math.random() * statNames.length
+    );
+    
+    for(let n = 0; n < statNames.length; n++){
+        const statName = statNames[randomIndex];
+        if(stats[statName] < 3){
+            stats[statName] += 1;
+            break;
+        }
+            randomIndex = (randomIndex + 1) % statNames.length;
+    }
     
       contractors.push({
 
