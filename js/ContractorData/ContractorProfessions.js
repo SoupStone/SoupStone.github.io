@@ -156,7 +156,7 @@ export const PROFESSIONS = [
 },
 
 {
-    name: "SYSTEMS ADMINISTRATOR",
+    name: "SYS ADMIN",
     description: "Technical overseer responsible for maintaining critical digital infrastructure.",
     skills: ["electronics", "bureaucracy", "instinct"],
     stat: "expertise"
