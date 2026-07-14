@@ -158,7 +158,7 @@ function buildStatsTable(stats, skills) {
 };
 
 const skillValue = value =>
-    value === -1 ? " " : String(value);
+    value === -1 ? "-" : String(value);
     const row = (a, b, c, d) =>
         `${a.padEnd(18)}| ${b.padEnd(18)}| ${c.padEnd(18)}| ${d.padEnd(18)}`;
 
