@@ -20,29 +20,29 @@ const BASE_STATS = {
 };
 
 const BASE_SKILLS = {
-    endurance: 0,
-    physique: 0,
-    engineering: 0,
-    explosives: 0,
-    bigguns: 0,
+    endurance: -1,
+    physique: -1,
+    engineering: -1,
+    explosives: -1,
+    bigguns: -1,
   
-    voidcraft: 0,
-    drive: 0,
-    instinct: 0,
-    cqc: 0,
-    guns: 0,
+    voidcraft: -1,
+    drive: -1,
+    instinct: -1,
+    cqc: -1,
+    guns: -1,
 
-    willpower: 0,
-    xenotech: 0,
-    shadow: 0,
-    survival: 0,
-    strom: 0,
+    willpower: -1,
+    xenotech: -1,
+    shadow: -1,
+    survival: -1,
+    strom: -1,
 
-    science: 0,
-    electronics: 0,
-    bureaucracy: 0,
-    encyclopedia: 0,
-    medicare: 0
+    science: -1,
+    electronics: -1,
+    bureaucracy: -1,
+    encyclopedia: -1,
+    medicare: -1
 };
 
 export function generateContractors() {
@@ -82,7 +82,7 @@ export function generateContractors() {
         }
             randomIndex = (randomIndex + 1) % statNames.length;
     }
-    
+
       contractors.push({
 
             id: i + 1,
