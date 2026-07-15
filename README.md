@@ -1,1 +1,1 @@
-![Zero Orbit].(assets/Zorbit_title.png)
+![Zero Orbit](assets/Zorbit_title.png)
