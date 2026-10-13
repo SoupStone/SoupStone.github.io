@@ -1,254 +1,277 @@
-export const WARNINGS = [
 
-{
-    name: "SADIST",
-    description: "Displays a disturbing enthusiasm for violence and close-quarters combat.",
-    skills: ["cqc", "guns"],
-    stat: "force"
-},
+export const EDGES = [
 
 {
     name: "DESIGNER DNA",
-    description: "Genetically engineered for physical performance beyond baseline human limits.",
-    skills: ["endurance", "physique"],
-    stat: "force"
-},
-
-{
-    name: "SHIPJACKER",
-    description: "Has a history of illegally seizing spacecraft and cargo vessels.",
-    skills: ["voidcraft", "electronics"],
+    description: "Genetically engineered for enhanced physical performance, with modifications tailored to a specific role or corporate requirement.",
+    skills: ["physique", "medicare", "science"],
     stat: "operations"
 },
 
 {
     name: "INTEGRATED INTELLIGENCE",
-    description: "Shares cognitive processes with an implanted artificial intelligence.",
-    skills: ["encyclopedia", "instinct"],
+    description: "Shares cognitive processes with an implanted artificial intelligence, gaining access to an additional analytical perspective.",
+    skills: ["electronics", "instinct", "encyclopaedia"],
     stat: "expertise"
 },
 
 {
     name: "VOID SOUL",
-    description: "Something about the emptiness between stars feels strangely familiar.",
-    skills: ["instinct", "endurance"],
+    description: "Has undergone extensive surgery to seal the body against vacuum exposure. The face has been replaced by a mechanical sensory array, and internal organs have been modified to survive the void.",
+    skills: ["voidcraft", "physique", "electronics"],
     stat: "adaptation"
 },
 
 {
     name: "FREAK",
-    description: "Carries visible mutations or abnormalities acquired through unknown causes.",
-    skills: ["endurance"],
-    stat: "force"
+    description: "Possesses conspicuous physical mutations or abnormalities whose origins are uncertain, disputed, or deliberately concealed.",
+    // The mutation subtable supplies the third skill.
+    skills: ["physique", "survival"],
+    stat: "adaptation"
 },
 
 {
     name: "NOBLE LINEAGE",
-    description: "Descended from influential families with access to education and privilege.",
-    skills: ["encyclopedia", "bureaucracy"],
+    description: "Descends from an influential family whose name, wealth, and connections can open doors in corporate and political circles.",
+    skills: ["bureaucracy", "encyclopaedia", "trade"],
     stat: "expertise"
 },
 
 {
     name: "FIEND",
-    description: "Possesses unhealthy appetites and disturbing personal habits.",
-    skills: ["shadow", "medicare"],
+    description: "Has developed unhealthy appetites, compulsions, or personal habits that can become difficult to control.",
+    skills: ["shadow", "medicare", "willpower"],
     stat: "adaptation"
 },
 
 {
     name: "DEATH PROOF",
-    description: "Has survived situations that should have been unquestionably fatal.",
-    skills: ["instinct", "drive"],
+    description: "Has survived multiple disasters, accidents, and engagements that should have ended their career or life.",
+    skills: ["instinct", "drive", "survival"],
     stat: "operations"
 },
 
 {
-    name: "NECROMANCER",
-    description: "The dead seem oddly indifferent to your presence.",
-    skills: ["survival", "willpower"],
-    stat: "adaptation"
-},
-
-{
     name: "GHOST",
-    description: "Moves quietly, leaves little trace, and is difficult to remember.",
-    skills: ["endurance", "willpower"],
-    stat: "adaptation"
-},
-
-{
-    name: "STAR CHILD",
-    description: "Exposure to the void has altered your perception of reality.",
-    skills: ["voidcraft", "strom"],
+    description: "Has an unusually obscure identity, with little reliable documentation connecting their present life to their past.",
+    skills: ["shadow", "bureaucracy", "electronics"],
     stat: "adaptation"
 },
 
 {
     name: "PARASITE",
-    description: "Something foreign lives within you, though its intentions remain unclear.",
-    skills: ["xenotech", "endurance"],
-    stat: "force"
-},
-
-{
-    name: "SORCERER",
-    description: "Capable of manipulating STROM phenomena in ways others cannot.",
-    skills: ["strom", "xenotech"],
-    stat: "expertise"
+    description: "An organism, symbiote, or experimental biological system lives within the character, its effects ranging from beneficial to deeply troubling.",
+    skills: ["xenotech", "medicare", "survival"],
+    stat: "adaptation"
 },
 
 {
     name: "PENAL CONSCRIPT",
-    description: "Service is mandatory and offered in place of a harsher sentence.",
-    skills: ["shadow", "physique"],
-    stat: "force"
+    description: "Was offered military or corporate service in place of a harsher sentence, and remains bound by the terms of that arrangement.",
+    skills: ["guns", "physique", "bureaucracy"],
+    stat: "operations"
 },
 
 {
     name: "LUDDITE",
-    description: "Distrusts advanced technology and prefers simpler solutions.",
-    skills: ["endurance", "physique"],
-    stat: "force"
+    description: "Distrusts advanced technology, avoids unnecessary augmentation, and favours simple systems that can be understood and repaired.",
+    skills: ["survival", "physique", "engineering"],
+    stat: "adaptation"
 },
 
 {
     name: "CULTIST",
-    description: "Maintains loyalty to an obscure sect or forbidden belief system.",
-    skills: ["strom", "shadow"],
-    stat: "operations"
+    description: "Belongs to a secretive sect whose beliefs, rituals, or long-term objectives conflict with accepted corporate and social norms.",
+    skills: ["willpower", "xenotech", "shadow"],
+    stat: "adaptation"
 },
 
 {
     name: "DOOM SAYER",
-    description: "Constantly predicts catastrophe and often appears to be correct.",
-    skills: ["strom", "willpower"],
-    stat: "adaptation"
-},
-
-{
-    name: "ASSET",
-    description: "Maintains connections to powerful individuals or organizations.",
-    skills: ["shadow", "bureaucracy"],
-    stat: "operations"
-},
-
-{
-    name: "STROM TUNED",
-    description: "Possesses an unusual sensitivity to STROM activity.",
-    skills: ["strom", "instinct"],
-    stat: "adaptation"
-},
-
-{
-    name: "SOFTWARE PIRATE",
-    description: "Specializes in illegal software acquisition and digital intrusion.",
-    skills: ["shadow", "electronics"],
+    description: "Obsessively studies patterns of collapse, disaster, and institutional failure, convinced that catastrophe is always approaching.",
+    skills: ["instinct", "science", "encyclopaedia"],
     stat: "expertise"
 },
 
 {
-    name: "MUTINEER",
-    description: "Has participated in at least one uprising against legitimate authority.",
-    skills: ["cqc", "voidcraft"],
-    stat: "force"
+    name: "ASSET",
+    description: "Is backed, monitored, or quietly controlled by a powerful individual or organisation with its own agenda.",
+    skills: ["bureaucracy", "shadow", "trade"],
+    stat: "operations"
+},
+
+{
+    name: "SOFTWARE PIRATE",
+    description: "Acquires, modifies, and distributes restricted software, proprietary firmware, and illegally copied corporate systems.",
+    skills: ["electronics", "engineering", "shadow"],
+    stat: "expertise"
 },
 
 {
     name: "ZEALOT",
-    description: "Driven by absolute conviction and unwavering belief.",
-    skills: ["willpower", "instinct"],
+    description: "Is driven by an uncompromising belief in God and is willing to endure considerable hardship rather than abandon it.",
+    skills: ["willpower", "survival", "instinct"],
     stat: "adaptation"
 },
 
 {
     name: "PYROMANIAC",
-    description: "Displays an unhealthy fascination with fire and destruction.",
-    skills: ["bigguns", "explosives"],
-    stat: "force"
+    description: "Has an unhealthy fascination with fire, explosions, and the destructive transformation of machinery and structures.",
+    skills: ["explosives", "engineering", "science"],
+    stat: "operations"
 },
 
 {
     name: "WAR CRIMINAL",
-    description: "Accused or convicted of severe violations during military operations.",
-    skills: ["explosives", "science"],
-    stat: "expertise"
+    description: "Was accused or convicted of atrocities during a military campaign, leaving a record that may be hidden, disputed, or actively pursued.",
+    skills: ["guns", "explosives", "survival"],
+    stat: "operations"
 },
 
 {
     name: "HUMAN EXPERIMENTATION",
-    description: "Has participated in ethically questionable medical research.",
-    skills: ["science", "medicare"],
+    description: "Has participated in, assisted with, or been subjected to ethically questionable human research, leaving knowledge or consequences that remain relevant.",
+    skills: ["science", "medicare", "bureaucracy"],
     stat: "expertise"
 },
 
 {
     name: "GUN NUT",
-    description: "Obsessively collects, maintains, and discusses firearms.",
-    skills: ["guns", "bigguns"],
+    description: "Obsessively collects, maintains, modifies, and studies firearms, often knowing obscure details about weapons that others overlook.",
+    skills: ["guns", "engineering", "trade"],
     stat: "operations"
 },
 
 {
     name: "CANNIBAL",
-    description: "Has acquired dietary habits considered unacceptable by most societies.",
-    skills: ["survival", "willpower"],
+    description: "Has consumed human flesh, whether through desperation, cultural practice, criminal predation, or a habit they have no intention of abandoning.",
+    skills: ["survival", "medicare", "willpower"],
     stat: "adaptation"
 },
 
 {
     name: "COUNTERFEITER",
-    description: "Experienced in the production of fraudulent documents and currency.",
-    skills: ["bureaucracy", "encyclopedia"],
+    description: "Produces convincing fraudulent credentials, identity records, corporate documents, and other instruments of deception.",
+    skills: ["bureaucracy", "electronics", "shadow"],
     stat: "expertise"
 },
 
 {
     name: "ORGAN HARVESTER",
-    description: "Profits from the acquisition and sale of biological material.",
-    skills: ["medicare", "science"],
+    description: "Operates in the illicit biological trade, sourcing, removing, preserving, or selling organs and other valuable human materials.",
+    skills: ["medicare", "science", "trade"],
     stat: "expertise"
 },
 
 {
     name: "BLOOD SPORT STAR",
-    description: "Former celebrity participant in violent competitive entertainment.",
-    skills: ["cqc", "medicare"],
+    description: "Once competed in televised combat, underground death matches, or corporate-sponsored fighting circuits and remains recognisable to the right audience.",
+    skills: ["cqc", "physique", "instinct"],
     stat: "operations"
 },
 
 {
     name: "HACKER",
-    description: "Specialist in unauthorized access to digital systems.",
-    skills: ["electronics", "bureaucracy"],
+    description: "Specialises in gaining unauthorised access to digital systems, bypassing security, and extracting protected information.",
+    skills: ["electronics", "instinct", "bureaucracy"],
     stat: "expertise"
 },
 
 {
-    name: "TERRORIST",
-    description: "Has employed violence against civilian or political targets.",
-    skills: ["explosives", "engineering"],
+    name: "INSURGENT",
+    description: "Has experience fighting an established authority through sabotage, clandestine operations, or organised resistance.",
+    skills: ["shadow", "explosives", "survival"],
+    stat: "adaptation"
+},
+
+{
+    name: "Grand Theft Auto",
+    description: "Specialises in stealing, concealing, and reselling vehicles, from ground transports to industrial craft and spacecraft.",
+    skills: ["drive", "electronics", "trade"],
     stat: "operations"
 },
 
 {
-    name: "GRAND THEFT AUTO",
-    description: "Has extensive experience acquiring vehicles without permission.",
-    skills: ["engineering", "drive"],
+    name: "LOOSE CANNON",
+    description: "Has a record of ignoring orders, escalating engagements, and using far more force than an operation requires.",
+    skills: ["guns", "cqc", "instinct"],
     stat: "operations"
-},
-
-{
-    name: "EXCESSIVE FORCE",
-    description: "Frequently exceeds authorized levels of violence during operations.",
-    skills: ["engineering", "bigguns"],
-    stat: "force"
 },
 
 {
     name: "TROPHY HUNTER",
-    description: "Tracks dangerous prey and collects evidence of successful kills.",
-    skills: ["xenotech", "survival"],
+    description: "Tracks dangerous creatures and collects trophies, specimens, or other proof of successful hunts.",
+    skills: ["survival", "xenotech", "instinct"],
+    stat: "adaptation"
+},
+
+{
+    name: "BLACK CLINIC",
+    description: "Has ties to unlicensed medical facilities that provide illegal surgery, undocumented treatment, and modifications unavailable through legitimate channels.",
+    skills: ["medicare", "bureaucracy", "trade"],
+    stat: "expertise"
+},
+
+{
+    name: "DEBT-BOUND",
+    description: "Is trapped beneath a substantial corporate or personal debt, with wages, equipment, or future contracts already pledged to creditors.",
+    skills: ["trade", "bureaucracy", "drive"],
+    stat: "operations"
+},
+
+{
+    name: "CLONE-BORN",
+    description: "Was grown from copied genetic material, and may face legal restrictions, identity complications, or expectations inherited from the original.",
+    skills: ["medicare", "science", "willpower"],
+    stat: "expertise"
+},
+
+{
+    name: "CORPORATE DEFECTOR",
+    description: "Abandoned a former employer under hostile circumstances and may possess valuable knowledge, stolen property, or enemies within the organisation.",
+    skills: ["bureaucracy", "electronics", "shadow"],
+    stat: "adaptation"
+},
+
+{
+    name: "SCRAP GURU",
+    description: "Can recognise the value hidden in discarded machinery and has a reputation for turning seemingly worthless wreckage into useful equipment.",
+    skills: ["engineering", "trade", "xenotech"],
+    stat: "operations"
+},
+
+{
+    name: "FRONTIER BORN",
+    description: "Was raised in an isolated settlement where shortages, unreliable infrastructure, and environmental hazards were part of everyday life.",
+    skills: ["survival", "physique", "drive"],
+    stat: "adaptation"
+},
+
+{
+    name: "CORPORATE LOYALIST",
+    description: "Has an unusually strong attachment to a corporation, its leadership, or its founding ideals, even when its interests conflict with their own.",
+    skills: ["bureaucracy", "willpower", "guns"],
+    stat: "adaptation"
+},
+
+{
+    name: "BLACK BOX",
+    description: "Carries an implanted or concealed data system containing sensitive records, encrypted archives, or information someone powerful wants recovered.",
+    skills: ["electronics", "encyclopaedia", "shadow"],
+    stat: "expertise"
+},
+
+{
+    name: "DISGRACED EXECUTIVE",
+    description: "Once held a position of authority in a corporation before a scandal, failed venture, or internal power struggle destroyed their career.",
+    skills: ["bureaucracy", "trade", "instinct"],
+    stat: "expertise"
+},
+
+{
+    name: "ARMS DEALER",
+    description: "Has experience sourcing, evaluating, and moving weapons through legitimate contracts and illicit supply networks.",
+    skills: ["guns", "trade", "bureaucracy"],
     stat: "operations"
 }
 
@@ -259,64 +282,48 @@ export const FREAKS = [
 {
     name: "STUNTED",
     skill: "shadow",
-    description: "Subject displays severe growth abnormalities."
+    description: "Subject displays unusual growth abnormalities."
 },
 
 {
     name: "TEETH",
     skill: "cqc",
-    description: "Subject possesses abnormal dentition."
-},
-
-{
-    name: "THIRD EYE",
-    skill: "strom",
-    description: "Subject possesses an additional sensory organ."
+    description: "Subject possesses abnormal dentition, including additional or unusually developed teeth."
 },
 
 {
     name: "HORNS",
-    skill: "cqc",
-    description: "Subject displays cranial bone protrusions."
+    skill: "physique",
+    description: "Subject displays prominent cranial bone protrusions."
 },
 
 {
     name: "GIANT",
     skill: "physique",
-    description: "Subject displays abnormal size and mass."
+    description: "Subject displays abnormal height and mass."
 }
 
 ];
 
 import { random } from "../utils.js";
 
-export function generateWarnings(count) {
+export function generateEdges(count) {
+    const edges = [];
 
-    const warnings = [];
+    for (let i = 0; i < count; i++) {
+        const edge = structuredClone(random(EDGES));
 
-    for(let i = 0; i < count; i++) {
-
-        const warning = structuredClone(
-            random(WARNINGS)
-        );
-// Freak sub table, its a mess but it works
-        if(warning.name === "FREAK") {
-
+        // Freak's mutation supplies its third skill.
+        if (edge.name === "FREAK") {
             const mutation = random(FREAKS);
 
-            warning.name =
-                `FREAK (${mutation.name})`;
-
-            warning.skills.push(
-                mutation.skill
-            );
-
-            warning.description +=
-                ` ${mutation.description}`;
+            edge.name = `FREAK (${mutation.name})`;
+            edge.skills.push(mutation.skill);
+            edge.description += ` ${mutation.description}`;
         }
 
-        warnings.push(warning);
+        edges.push(edge);
     }
 
-    return warnings;
+    return edges;
 }
