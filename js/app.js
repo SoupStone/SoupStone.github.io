@@ -3,6 +3,7 @@ from "./contractor_generator.js";
 import { CONTRACTOR_COUNT }
 from "./config.js";
 let contractors = [];
+let currentContractor = null;
 
 const output = document.getElementById("output");
 const input = document.getElementById("command");
@@ -80,12 +81,13 @@ async function help(){
 
     await typeLine("AVAILABLE COMMANDS","system");
     await typeLine("");
-    await typeLine("HELP");
-    await typeLine("SEARCH");
-    await typeLine("LIST");
-    await typeLine("VIEW <ID>");
-    await typeLine("ABOUT");
-    await typeLine("CLEAR");
+    await typeLine("HELP - see this again");
+    await typeLine("SEARCH - generate a list of contractors");
+    await typeLine("LIST - display your list of contractors");
+    await typeLine("VIEW <ID> - view a spesific contractors details");
+    await typeLine("SAVE - save currently viewed contractor as a text file");
+    await typeLine("ABOUT - Display a short message from Franko-Grace");
+    await typeLine("CLEAR - Wipe the screen");
     await typeLine("");
 }
 
@@ -133,7 +135,7 @@ async function displayContractors(){
     await typeLine("");
     await typeLine("");
 
-    await typeLine("ID  CALLSIGN               PROFESSION      WARNING");
+    await typeLine("ID  CALLSIGN               PROFESSION      EDGE");
     await typeLine("--  ---------------------  --------------  ----------------");
 
     for(const c of contractors){
@@ -143,66 +145,80 @@ async function displayContractors(){
         const profession = c.profession.padEnd(14);
 
         await typeLine(
-            `${id}  ${callsign}  ${profession}  ${c.warning}`
+            `${id}  ${callsign}  ${profession}  ${c.edge}`
         );
     }
 }
     
+
 function buildStatsTable(stats, skills) {
     const grades = {
-    "-1": " ",
-    "0": "D ",
-    "1": "C",
-    "2": "B",
-    "3": "A"
-};
+        "-1": " ",
+        "0": "D",
+        "1": "C",
+        "2": "B",
+        "3": "A"
+    };
 
 const skillValue = value =>
-    value === -1 ? "-" : String(value);
-    const row = (a, b, c, d) =>
-        `${a.padEnd(18)}| ${b.padEnd(18)}| ${c.padEnd(18)}| ${d.padEnd(18)}`;
+    value === undefined || value === null
+        ? "-"
+        : value === -1
+            ? "-"
+            : grades[value] ?? "-";
+
+    const statGrade = value =>
+        grades[value] ?? "-";
+
+    const row = (a, b, c) =>
+        `${a.padEnd(24)}| ${b.padEnd(24)}| ${c.padEnd(24)}`;
+
+    const skillsRows = [
+        ["TRADE", "WILLPOWER", "SCIENCE"],
+        ["DRIVE", "XENOTECH", "ENGINEERING"],
+        ["INSTINCT", "SHADOW", "BUREAUCRACY"],
+        ["PHYSIQUE", "SURVIVAL", "ENCYCLOPAEDIA"],
+        ["ELECTRONICS", "VOIDCRAFT", "MEDICARE"]
+    ];
+
+    const skillTable = skillsRows
+        .map(([a, b, c]) =>
+            row(
+                `${a} ${skillValue(skills[a.toLowerCase()])}`,
+                `${b} ${skillValue(skills[b.toLowerCase()])}`,
+                `${c} ${skillValue(skills[c.toLowerCase()])}`
+            )
+        )
+        .join("\n");
+
+    const equipmentSkills = [
+        ["GUNS", skills.guns],
+        ["CQC", skills.cqc],
+        ["EXPLOSIVES", skills.explosives],
+        ["TOUGHNESS", skills.toughness]
+    ];
+
+    const equipmentRow = equipmentSkills
+        .map(([name, value]) =>
+            `${name} ${skillValue(value)}`
+        )
+        .join("  |  ");
 
     return `
 <pre class="stat-block">
 ${row(
-    `FORCE ${grades[stats.force]}`,
-    `OPERATIONS ${grades[stats.operations]}`,
-    `ADAPTATION ${grades[stats.adaptation]}`,
-    `EXPERTISE ${grades[stats.expertise]}`
+    `OPERATIONS ${statGrade(stats.operations)}`,
+    `ADAPTATION ${statGrade(stats.adaptation)}`,
+    `EXPERTISE ${statGrade(stats.expertise)}`
 )}
-${"-".repeat(78)}
-${row(
-    `ENDURANCE ${skillValue(skills.endurance)}`,
-    `VOIDCRAFT ${skillValue(skills.voidcraft)}`,
-    `WILLPOWER ${skillValue(skills.willpower)}`,
-    `SCIENCE ${skillValue(skills.science)}`
-)}
-${row(
-    `PHYSIQUE ${skillValue(skills.physique)}`,
-    `DRIVE ${skillValue(skills.drive)}`,
-    `XENOTECH ${skillValue(skills.xenotech)}`,
-    `ELECTRONICS ${skillValue(skills.electronics)}`
-)}
-${row(
-    `ENGINEERING ${skillValue(skills.engineering)}`,
-    `INSTINCT ${skillValue(skills.instinct)}`,
-    `SHADOW ${skillValue(skills.shadow)}`,
-    `BUREAUCRACY ${skillValue(skills.bureaucracy)}`
-)}
-${row(
-    `EXPLOSIVES ${skillValue(skills.explosives)}`,
-    `CQC ${skillValue(skills.cqc)}`,
-    `SURVIVAL ${skillValue(skills.survival)}`,
-    `ENCYCLOPEDIA ${skillValue(skills.encyclopedia)}`
-)}
-${row(
-    `BIG GUNS ${skillValue(skills.bigguns)}`,
-    `GUNS ${skillValue(skills.guns)}`,
-    `STROM ${skillValue(skills.strom)}`,
-    `MEDICARE ${skillValue(skills.medicare)}`
-)}
+${"-".repeat(80)}
+${skillTable}
+${"-".repeat(80)}
+EQUIPMENT-PAIRED STATS
+${equipmentRow}
 </pre>`;
 }
+
 
 function viewContractor(id){
 
@@ -213,7 +229,7 @@ function viewContractor(id){
         addLine("Contractor not found.","error");
         return;
     }
-
+    currentContractor = c;
     const wrapper = document.createElement("div");
 
     wrapper.className = "dossier";
@@ -229,7 +245,7 @@ wrapper.innerHTML = `
 
     <span class="separator">|</span>
 
-    <span class="warning-tag">${c.warning}</span>
+    <span class="edge-tag">${c.edge}</span>
 
 </div>
 
@@ -246,13 +262,13 @@ wrapper.innerHTML = `
         </div>
 
         <div class="section-title">
-            DISCIPLINARY NOTES
+            NOTES
         </div>
 
         <div class="section-content">
-            Subject warning flag: ${c.warning}
+            Subject edge flag: ${c.edge}
             <br><br>
-            ${c.warningDescription}
+            ${c.edgeDescription}
         </div>
     ${buildStatsTable(c.stats, c.skills)}
     </div>
@@ -271,52 +287,130 @@ wrapper.innerHTML = `
     addLine("");
 }
 
-async function execute(command){
 
-    await typeLine(`FG:// ${command}`,"user");
+async function execute(command) {
+    await typeLine(`FG:// ${command}`, "user");
 
-    const parts = command.trim().split(" ");
-
+    const parts = command.trim().split(/\s+/);
     const cmd = parts[0].toUpperCase();
 
-    switch(cmd){
-
+    switch (cmd) {
         case "HELP":
             await help();
             break;
-        
+
         case "SEARCH":
             await searchContractors();
             break;
-        
+
         case "LIST":
             await displayContractors();
             break;
 
-        case "VIEW":
-            if(!parts[1]){
-                await typeLine("Usage: VIEW <ID>","warning");
+        case "VIEW": {
+            if (!parts[1]) {
+                await typeLine("Usage: VIEW <ID>", "warning");
                 break;
             }
 
-    viewContractor(parseInt(parts[1]));
-    break;
+            const id = Number(parts[1]);
+
+            if (!Number.isInteger(id)) {
+                await typeLine("Invalid contractor ID.", "error");
+                break;
+            }
+
+            viewContractor(id);
+            break;
+        }
+
+        case "SAVE":
+            saveContractor(currentContractor);
+            break;
 
         case "ABOUT":
             await about();
             break;
 
         case "CLEAR":
-            output.innerHTML="";
+            output.innerHTML = "";
             break;
 
         default:
-            await typeLine("Unknown command.","error");
-            await typeLine("Type HELP for command list.","warning");
+            await typeLine("Unknown command.", "error");
+            await typeLine("Type HELP for command list.", "warning");
     }
 
     scrollBottom();
 }
+
+function saveContractor(c) {
+  if (!c) {
+    addLine("Use VIEW <ID> first.", "error");
+    return;
+  }
+
+  const grade = value => ({
+    "-1": "-",
+    "0": "D",
+    "1": "C",
+    "2": "B",
+    "3": "A"
+  })[value] ?? value ?? "-";
+
+  const skill = name => c.skills[name] ?? "-";
+
+  const row = (a, b, d) =>
+    `${a.padEnd(24)} | ${b.padEnd(24)} | ${d}`;
+
+  const text = `
+FRANKO-GRACE CONTRACTOR DOSSIER
+================================================================================
+
+CALLSIGN: ${c.callsign}
+PROFESSION: ${c.profession}
+EDGE: ${c.edge}
+
+BACKGROUND
+--------------------------------------------------------------------------------
+${c.bio}
+
+NOTES
+--------------------------------------------------------------------------------
+${c.edgeDescription}
+
+CHARACTER STATS & SKILLS
+================================================================================
+${row("OPERATIONS (" + grade(c.stats.operations) + ")", "ADAPTATION (" + grade(c.stats.adaptation) + ")", "EXPERTISE (" + grade(c.stats.expertise) + ")")}
+${"-".repeat(80)}
+${row("TRADE: " + skill("trade"), "WILLPOWER: " + skill("willpower"), "SCIENCE: " + skill("science"))}
+${row("DRIVE: " + skill("drive"), "XENOTECH: " + skill("xenotech"), "ENGINEERING: " + skill("engineering"))}
+${row("INSTINCT: " + skill("instinct"), "SHADOW: " + skill("shadow"), "BUREAUCRACY: " + skill("bureaucracy"))}
+${row("PHYSIQUE: " + skill("physique"), "SURVIVAL: " + skill("survival"), "ENCYCLOPAEDIA: " + skill("encyclopaedia"))}
+${row("ELECTRONICS: " + skill("electronics"), "VOIDCRAFT: " + skill("voidcraft"), "MEDICARE: " + skill("medicare"))}
+
+EQUIPMENT-PAIRED STATS
+================================================================================
+GUNS: ${skill("guns")}  |  CQC: ${skill("cqc")}  |  EXPLOSIVES: ${skill("explosives")}  |  TOUGHNESS: ${skill("toughness")}
+
+================================================================================
+FRANKO-GRACE INTERNAL PERSONNEL RECORD
+`;
+
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `${c.callsign}.txt`;
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(url);
+}
+
 
 input.addEventListener("keydown", async e=>{
 
