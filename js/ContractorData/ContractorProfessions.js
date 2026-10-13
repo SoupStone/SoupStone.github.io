@@ -1,266 +1,267 @@
 // descriptions to be updated, currently ai junk
+
 export const PROFESSIONS = [
 
 {
     name: "PILOT",
-    description: "Certified spacecraft operator trained to navigate hostile environments and unstable transit routes.",
-    skills: ["drive", "instinct", "voidcraft", "bigguns"],
+    description: "Military spacecraft operator trained to move crews and cargo through hazardous routes and contested space.",
+    skills: ["drive", "instinct", "voidcraft", "electronics"],
     stat: "operations"
 },
 
 {
     name: "MEDIC",
-    description: "Combat medical specialist responsible for trauma treatment and emergency field surgery.",
+    description: "Field medical specialist trained to stabilize casualties and keep contractors alive under fire.",
     skills: ["medicare", "physique", "guns", "science"],
-    stat: "operations"
+    stat: "expertise"
 },
 
 {
     name: "GRUNT",
-    description: "Frontline infantry contractor accustomed to prolonged combat operations.",
-    skills: ["guns", "endurance", "physique", "guns"],
-    stat: "force"
-},
-
-{
-    name: "COURIER",
-    description: "Reliable transport specialist trusted to move personnel, cargo, and sensitive information.",
-    skills: ["survival", "drive", "voidcraft","instinct"],
+    description: "General-purpose combat contractor accustomed to security patrols, boarding actions, and prolonged engagements.",
+    skills: ["guns", "physique", "survival", "willpower"],
     stat: "operations"
 },
 
 {
+    name: "COURIER",
+    description: "Independent transport specialist trusted to deliver sensitive cargo, personnel, and information when communications cannot be relied upon.",
+    skills: ["survival", "drive", "voidcraft", "instinct"],
+    stat: "adaptation"
+},
+
+{
     name: "PATHFINDER",
-    description: "Explorer and guide trained to locate safe routes through dangerous territory.",
-    skills: ["instinct", "shadow", "survival","willpower"],
+    description: "Frontier guide experienced in scouting routes, assessing terrain, and leading teams through unfamiliar environments.",
+    skills: ["instinct", "shadow", "survival", "willpower"],
     stat: "adaptation"
 },
 
 {
     name: "SCAVENGER",
-    description: "Resourceful salvager skilled at recovering useful equipment from abandoned sites.",
-    skills: ["engineering", "xenotech", "shadow", "survival"],
+    description: "Salvage worker who recovers valuable equipment, strips abandoned installations, and knows what can be reused or sold.",
+    skills: ["engineering", "xenotech", "shadow", "trade"],
     stat: "adaptation"
 },
 
 {
     name: "XENOLOGIST",
-    description: "Research specialist dedicated to the study of alien life and forgotten civilizations.",
-    skills: ["xenotech", "science", "strom", "encyclopaedia"],
+    description: "Research specialist who studies alien artefacts, extinct civilizations, and technologies humanity barely understands.",
+    skills: ["xenotech", "science", "encyclopaedia", "medicare"],
     stat: "expertise"
 },
 
 {
     name: "MECHANIC",
-    description: "Technical engineer capable of maintaining vehicles, machinery, and spacecraft systems.",
-    skills: ["engineering", "physique", "voidcraft", "bigguns"],
-    stat: "force"
+    description: "Industrial technician responsible for keeping vehicles, machinery, and spacecraft systems operational in the field.",
+    skills: ["engineering", "physique", "voidcraft", "electronics"],
+    stat: "expertise"
 },
 
 {
     name: "KNIGHT",
-    description: "Heavily armed combatant trained for direct assaults and defensive operations.",
-    skills: ["cqc", "physique", "endurance", "willpower"],
-    stat: "force"
+    description: "Armoured corporate retainer trained to hold ground, breach defended positions, and serve as an instrument of authority.",
+    skills: ["cqc", "physique", "willpower", "guns"],
+    stat: "operations"
 },
 
 {
     name: "NAVIGATOR",
-    description: "Specialist in stellar cartography, route planning, and anomalous transit prediction.",
-    skills: ["voidcraft", "instinct", "strom","electronics"],
+    description: "Specialist in route planning, stellar navigation, and the interpretation of sensor data across poorly charted space.",
+    skills: ["voidcraft", "instinct", "electronics", "science"],
     stat: "operations"
 },
 
 {
     name: "RELIC HUNTER",
-    description: "Explorer of ancient ruins and lost worlds, often working beyond the frontier.",
+    description: "Independent explorer who searches abandoned settlements and ancient ruins for valuable artefacts and forgotten technology.",
     skills: ["xenotech", "survival", "willpower", "instinct"],
     stat: "adaptation"
 },
 
 {
     name: "QUARTERMASTER",
-    description: "Logistics expert responsible for equipment allocation and supply management.",
-    skills: ["guns", "bigguns", "physique", "bureaucracy"],
+    description: "Logistics specialist responsible for inventory, procurement, equipment allocation, and keeping a contractor team supplied.",
+    skills: ["trade", "bureaucracy", "guns", "engineering"],
     stat: "expertise"
 },
 
 {
     name: "SCOUT",
-    description: "Reconnaissance specialist trained to observe hostile forces without detection.",
+    description: "Reconnaissance operative trained to observe hostile forces, identify routes, and return without being detected.",
     skills: ["shadow", "survival", "guns", "instinct"],
     stat: "adaptation"
 },
 
 {
     name: "PREACHER",
-    description: "Religious advisor tasked with preserving morale and spiritual discipline.",
-    skills: ["encyclopedia", "willpower", "medicare", "strom"],
+    description: "Religious officer trained to provide guidance to isolated crews and settlements.",
+    skills: ["encyclopaedia", "willpower", "bureaucracy", "medicare"],
     stat: "adaptation"
 },
 
 {
-    name: "EXORCIST",
-    description: "Specialist trained to identify and neutralize STROM-related corruption.",
-    skills: ["strom", "willpower", "endurance", "guns"],
-    stat: "adaptation"
+    name: "CONTAINMENT SPECIALIST",
+    description: "Hazard-response contractor trained to isolate dangerous materials, secure contaminated sites, and prevent unknown threats from spreading.",
+    skills: ["science", "engineering", "survival", "guns"],
+    stat: "expertise"
 },
 
 {
     name: "PALADIN",
-    description: "Elite warrior sworn to confront the horrors that emerge from beyond the Gate.",
-    skills: ["willpower", "cqc", "bigguns", "endurance"],
-    stat: "force"
+    description: "Elite enforcer from the church, trained protect high-value personnel.",
+    skills: ["willpower", "cqc", "shadow", "guns"],
+    stat: "operations"
 },
 
 {
     name: "SCRIBE",
-    description: "Archivist and administrator responsible for records, reports, and intelligence.",
-    skills: ["encyclopedia", "bureaucracy", "instinct", "science"],
+    description: "Records specialist responsible for documentation, archival research, intelligence reports, and the preservation of institutional knowledge.",
+    skills: ["encyclopaedia", "bureaucracy", "instinct", "science"],
     stat: "expertise"
 },
 
 {
     name: "DEMOLITIONIST",
-    description: "Explosives expert trained in breaching, sabotage, and controlled destruction.",
-    skills: ["explosives", "endurance", "bigguns", "explosives"],
-    stat: "force"
+    description: "Breaching and demolition expert who prepares charges, disables obstacles, and destroys structures or equipment on contract.",
+    skills: ["explosives", "engineering", "physique", "survival"],
+    stat: "operations"
 },
 
 {
     name: "DOCTOR",
-    description: "Highly educated physician capable of advanced diagnosis and treatment.",
-    skills: ["medicare", "encyclopedia", "bureaucracy", "medicare"],
+    description: "Qualified physician trained in diagnosis, complex treatment, and the management of injuries and illness beyond battlefield care.",
+    skills: ["medicare", "science", "encyclopaedia", "bureaucracy"],
     stat: "expertise"
 },
 
 {
     name: "ASTEROID MINER",
-    description: "Industrial worker experienced in hazardous extraction operations.",
-    skills: ["voidcraft", "bigguns", "physique", "explosives"],
-    stat: "force"
+    description: "Extraction worker experienced in hazardous mining, industrial machinery, and the recovery of resources from airless bodies.",
+    skills: ["voidcraft", "physique", "explosives", "engineering"],
+    stat: "operations"
 },
 
 {
     name: "CHEMIST",
-    description: "Scientific specialist focused on compounds, medicines, and volatile substances.",
-    skills: ["medicare", "science", "explosives", "engineering"],
+    description: "Laboratory specialist who develops and analyses industrial compounds, pharmaceuticals, propellants, and hazardous substances.",
+    skills: ["science", "medicare", "engineering", "encyclopaedia"],
     stat: "expertise"
 },
 
 {
     name: "PHYSICIST",
-    description: "Research scientist dedicated to understanding the laws governing reality.",
+    description: "Research specialist who studies advanced materials, propulsion phenomena, and the physical principles behind unfamiliar technologies.",
     skills: ["science", "voidcraft", "electronics", "encyclopaedia"],
     stat: "expertise"
 },
 
 {
     name: "SYS ADMIN",
-    description: "Technical overseer responsible for maintaining critical digital infrastructure.",
-    skills: ["electronics", "bureaucracy", "instinct", "electronics"],
+    description: "Systems administrator responsible for maintaining corporate networks, access permissions, databases, and critical digital infrastructure.",
+    skills: ["electronics", "bureaucracy", "instinct", "engineering"],
     stat: "expertise"
 },
 
 {
     name: "ROBOTICIST",
-    description: "Engineer specializing in autonomous systems and machine intelligence.",
-    skills: ["engineering", "electronics", "voidcraft", "engineering"],
+    description: "Engineer specialising in robotics, automated industrial systems, and the maintenance of autonomous machines.",
+    skills: ["engineering", "electronics", "science", "xenotech"],
     stat: "expertise"
 },
 
 {
     name: "CYBER SECURITY",
-    description: "Network defense specialist trained to combat intrusion and hostile code.",
-    skills: ["electronics", "strom", "guns", "electronics"],
-    stat: "expertise"
+    description: "Digital security specialist tasked with protecting corporate systems, identifying intrusions, and defeating hostile access attempts.",
+    skills: ["electronics", "bureaucracy", "shadow", "instinct"],
+    stat: "adaptation"
 },
 
 {
     name: "COOK",
-    description: "Support specialist responsible for sustaining personnel in hostile environments.",
-    skills: ["survival", "endurance", "shadow", "instinct"],
+    description: "Galley worker responsible for feeding crews, preserving supplies, and making limited provisions last in isolated facilities.",
+    skills: ["survival", "trade", "physique", "instinct"],
     stat: "adaptation"
 },
 
 {
     name: "PORTER",
-    description: "Heavy labour specialist accustomed to transporting equipment across difficult terrain.",
-    skills: ["endurance", "physique", "instinct", "endurance"],
-    stat: "force"
+    description: "Heavy labourer hired to move equipment, haul supplies, and transport cargo through difficult or hazardous terrain.",
+    skills: ["physique", "drive", "survival", "trade"],
+    stat: "operations"
 },
 
 {
     name: "SCRAPPER",
-    description: "Industrial salvager skilled at dismantling and repurposing damaged technology.",
-    skills: ["voidcraft", "engineering", "explosives", "survival"],
+    description: "Industrial salvager who dismantles damaged machinery, recovers usable components, and strips derelict equipment for parts.",
+    skills: ["engineering", "voidcraft", "explosives", "trade"],
     stat: "operations"
 },
 
 {
     name: "SMUGGLER",
-    description: "Experienced transporter with extensive knowledge of unofficial trade routes.",
-    skills: ["shadow", "drive", "voidcraft", "guns"],
-    stat: "operations"
+    description: "Illicit transporter who moves restricted goods through unofficial routes, evades inspections, and exploits gaps in corporate oversight.",
+    skills: ["shadow", "drive", "voidcraft", "trade"],
+    stat: "adaptation"
 },
 
 {
     name: "SIEGE BREAKER",
-    description: "Heavy assault specialist trained to destroy fortifications and entrenched positions.",
-    skills: ["bigguns", "guns", "physique", "explosives"],
-    stat: "force"
-},
-
-{
-    name: "TANKER",
-    description: "Armoured vehicle operator accustomed to combat in mechanized formations.",
-    skills: ["bigguns", "drive", "engineering", "endurance"],
-    stat: "force"
-},
-
-{
-    name: "AGENT",
-    description: "Corporate operative trained to accomplish objectives through discretion and force.",
-    skills: ["shadow", "guns", "cqc", "survival"],
+    description: "Heavy assault contractor specialising in forced entry, fortified positions, and the destruction of defensive infrastructure.",
+    skills: ["guns", "physique", "explosives", "engineering"],
     stat: "operations"
 },
 
 {
+    name: "TANKER",
+    description: "Armoured vehicle crew member trained to operate combat vehicles, maintain their systems, and function under sustained fire.",
+    skills: ["drive", "engineering", "guns", "electronics"],
+    stat: "operations"
+},
+
+{
+    name: "AGENT",
+    description: "Corporate operative assigned to sensitive objectives involving infiltration, asset recovery, surveillance, and targeted violence.",
+    skills: ["shadow", "guns", "cqc", "bureaucracy"],
+    stat: "adaptation"
+},
+
+{
     name: "COMPANY COP",
-    description: "Security officer tasked with protecting corporate interests and personnel.",
-    skills: ["bureaucracy", "guns", "cqc", "physique"],
+    description: "Corporate security officer responsible for enforcing company policy, investigating incidents, and protecting facilities and personnel.",
+    skills: ["bureaucracy", "guns", "cqc", "instinct"],
     stat: "operations"
 },
 
 {
     name: "SPY",
-    description: "Intelligence operative trained in infiltration, surveillance, and information theft.",
-    skills: ["instinct", "cqc", "shadow", "bureaucracy"],
-    stat: "operations"
-},
-
-{
-    name: "XENO-TECHNICIAN",
-    description: "Specialist responsible for maintaining and studying alien technology.",
-    skills: ["xenotech", "electronics", "engineering", "xenotech"],
+    description: "Intelligence operative specialising in covert entry, information theft, surveillance, and the exploitation of corporate secrets.",
+    skills: ["instinct", "cqc", "shadow", "electronics"],
     stat: "adaptation"
 },
 
 {
+    name: "XENO-TECHNICIAN",
+    description: "Technical specialist tasked with examining, maintaining, and safely handling devices recovered from non-human installations.",
+    skills: ["xenotech", "electronics", "engineering", "science"],
+    stat: "expertise"
+},
+
+{
     name: "SNIPER",
-    description: "Long-range marksman trained to eliminate priority targets with precision.",
-    skills: ["bigguns", "shadow", "instinct", "survival"],
+    description: "Long-range marksman trained to observe targets, select firing positions, and eliminate priority threats from concealment.",
+    skills: ["guns", "shadow", "instinct", "survival"],
     stat: "adaptation"
 }
 
 ];
 
 import { random } from "../utils.js";
-export function generateProfessions(count) {
 
+export function generateProfessions(count) {
     const professions = [];
 
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
         professions.push(random(PROFESSIONS));
     }
 
