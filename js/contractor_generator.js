@@ -15,27 +15,27 @@ from "./ContractorData/ContractorImages.js";
 
 
 const BASE_SKILLS = {
-    trade: -1,
-    drive: -1,
-    instinct: -1,
-    physique: -1,
-    electronics: -1,
+    trade: 0,
+    drive: 0,
+    instinct: 0,
+    physique: 0,
+    electronics: 0,
 
-    willpower: -1,
-    xenotech: -1,
-    shadow: -1,
-    survival: -1,
-    voidcraft: -1,
+    willpower: 0,
+    xenotech: 0,
+    shadow: 0,
+    survival: 0,
+    voidcraft: 0,
 
-    science: -1,
-    engineering: -1,
-    bureaucracy: -1,
-    encyclopaedia: -1,
-    medicare: -1,
+    science: 0,
+    engineering: 0,
+    bureaucracy: 0,
+    encyclopaedia: 0,
+    medicare: 0,
 
-    guns: -1,
-    cqc: -1,
-    explosives: -1,
+    guns: 0,
+    cqc: 0,
+    explosives: 0,
 
     toughness: 1
 };
