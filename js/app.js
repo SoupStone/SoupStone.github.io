@@ -151,19 +151,18 @@ async function displayContractors(){
 }
     
 
+
 function buildStatsTable(stats, skills) {
     const grades = {
-        "-1": " ",
+        "-1": "-",
         "0": "D",
         "1": "C",
         "2": "B",
         "3": "A"
     };
 
-const skillValue = value =>
-    value === undefined || value === null
-        ? "-"
-        : value === -1
+    const skillValue = value =>
+        value === undefined || value === null
             ? "-"
             : grades[value] ?? "-";
 
@@ -206,16 +205,19 @@ const skillValue = value =>
 
     return `
 <pre class="stat-block">
+MAJOR STATS
+${"=".repeat(80)}
+${equipmentRow}
+
+CHARACTER SKILLS
+${"=".repeat(80)}
 ${row(
-    `OPERATIONS ${statGrade(stats.operations)}`,
-    `ADAPTATION ${statGrade(stats.adaptation)}`,
-    `EXPERTISE ${statGrade(stats.expertise)}`
+    `OPERATIONS (${statGrade(stats.operations)})`,
+    `ADAPTATION (${statGrade(stats.adaptation)})`,
+    `EXPERTISE (${statGrade(stats.expertise)})`
 )}
 ${"-".repeat(80)}
 ${skillTable}
-${"-".repeat(80)}
-EQUIPMENT-PAIRED STATS
-${equipmentRow}
 </pre>`;
 }
 
@@ -358,7 +360,7 @@ function saveContractor(c) {
     "3": "A"
   })[value] ?? value ?? "-";
 
-  const skill = name => c.skills[name] ?? "-";
+  const skill = name => grade(c.skills[name] ?? -1);
 
   const row = (a, b, d) =>
     `${a.padEnd(24)} | ${b.padEnd(24)} | ${d}`;
@@ -379,7 +381,11 @@ NOTES
 --------------------------------------------------------------------------------
 ${c.edgeDescription}
 
-CHARACTER STATS & SKILLS
+MAJOR STATS
+================================================================================
+GUNS: ${skill("guns")}  |  CQC: ${skill("cqc")}  |  EXPLOSIVES: ${skill("explosives")}  |  TOUGHNESS: ${skill("toughness")}
+
+CHARACTER SKILLS
 ================================================================================
 ${row("OPERATIONS (" + grade(c.stats.operations) + ")", "ADAPTATION (" + grade(c.stats.adaptation) + ")", "EXPERTISE (" + grade(c.stats.expertise) + ")")}
 ${"-".repeat(80)}
@@ -389,9 +395,6 @@ ${row("INSTINCT: " + skill("instinct"), "SHADOW: " + skill("shadow"), "BUREAUCRA
 ${row("PHYSIQUE: " + skill("physique"), "SURVIVAL: " + skill("survival"), "ENCYCLOPAEDIA: " + skill("encyclopaedia"))}
 ${row("ELECTRONICS: " + skill("electronics"), "VOIDCRAFT: " + skill("voidcraft"), "MEDICARE: " + skill("medicare"))}
 
-EQUIPMENT-PAIRED STATS
-================================================================================
-GUNS: ${skill("guns")}  |  CQC: ${skill("cqc")}  |  EXPLOSIVES: ${skill("explosives")}  |  TOUGHNESS: ${skill("toughness")}
 
 ================================================================================
 FRANKO-GRACE INTERNAL PERSONNEL RECORD
