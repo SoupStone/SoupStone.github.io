@@ -113,7 +113,7 @@ body::before{
     color:var(--cyan);
 }
 
-.warning{
+.edge{
     color:var(--yellow);
 }
 
@@ -230,7 +230,7 @@ body::before{
     color:var(--green);
 }
 
-.warning-tag{
+.edge-tag{
     color:var(--yellow);
 }
 
